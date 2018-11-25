@@ -26,3 +26,6 @@ eureka:
   client: #客户端注册进eureka服务列表内
     service-url:
       defaultZone: http://localhost:7001/eureka             # Eureka注册中心定义的服务ip地址
+  instance:
+      instance-id: microservicecloud-dept8001               # 修改Eureka管理界面的别名
+
