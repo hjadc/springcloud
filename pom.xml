@@ -11,7 +11,7 @@
         <module>microservice-api</module>
         <module>microservice-provider-dept-8001</module>
         <module>microservice-consumer-dept-80</module>
-        <module>microserviceeureka7001</module>
+        <module>microservice-eureka-7001</module>
     </modules>
     <packaging>pom</packaging>
     <name>mycloud-parent</name>
