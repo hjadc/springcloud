@@ -40,7 +40,6 @@ public class DeptController {
         return deptService.list();
     }
 
-
     @RequestMapping(value = "/dept/discovery", method = RequestMethod.GET)
     public Object discovery() {
 
