@@ -32,6 +32,6 @@ eureka:
 
 info:
   app.name: microservicecloud
-  company.name: www.atguigu.com
-  build.artifactId: $project.artifactId$
-  build.version: $project.version$
+  company.name: www.baidu.com
+  build.artifactId: @project.artifactId@
+  build.version: @project.version@
