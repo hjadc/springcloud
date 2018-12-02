@@ -1,8 +1,10 @@
 package com.huju.mycloud;
 
+import com.huju.myrule.MySelfRule;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.ribbon.RibbonClient;
 
 /**
  * 部门的消费者
@@ -11,6 +13,8 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication
 @EnableEurekaClient
+// 对 MICROSERVICECLOUD-DEPT 服务使用自定义的分配策略
+@RibbonClient(name = "MICROSERVICECLOUD-DEPT", configuration = MySelfRule.class)
 public class DeptConsumer80_App {
 
     public static void main(String[] args) {
