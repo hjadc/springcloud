@@ -30,13 +30,13 @@ public class DeptController {
 
     @RequestMapping(value = "/dept/get/{id}", method = RequestMethod.GET)
     public Dept get(@PathVariable("id") Long id) {
-        System.out.println("提莫队长正在待命!!!");
+        System.out.println("节点三... 提莫队长正在待命!!!");
         return deptService.get(id);
     }
 
     @RequestMapping(value = "/dept/list", method = RequestMethod.GET)
     public List<Dept> list() {
-        System.out.println("德玛西亚!!!");
+        System.out.println("节点三... 德玛西亚!!!");
         return deptService.list();
     }
 
