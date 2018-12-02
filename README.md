@@ -2,7 +2,8 @@
 
 ###1.Ribbon
     Ribbon是基于客户端的负载均衡
-    com/huju/mycloud/config/ConfigBean.java:17 开启负载均衡与配置分配策略
+    开启负载均衡与配置分配策略 com/huju/mycloud/config/ConfigBean.java:17 
+    自定义轮询策略(每台机器访问5次) com/huju/myrule/RandomRule_HJ.java:16
 
 ### 项目说明
     1.microservice-api  -- 这是一个公用的包,目前就定义了一个公用的实体类

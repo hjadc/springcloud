@@ -21,6 +21,6 @@ public class MySelfRule {
         // new RoundRobinRule();   轮询
         // new RandomRule();       随机
         // new RetryRule();        重试机制,(默认轮询,当遇到一个服务多次连接失败后自动跳过该服务继续轮询别的服务)
-        return new RandomRule();
+        return new RandomRule_HJ();
     }
 }
