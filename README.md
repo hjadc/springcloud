@@ -14,6 +14,7 @@
     6.microservice-provider-dept-8001   -- 这是服务提供方集群节点一
     7.microservice-provider-dept-8002   -- 这是服务提供方集群节点二
     8.microservice-provider-dept-8003   -- 这是服务提供方集群节点三
+    9.microservice-consumer-dept-feign  -- 这是面向客户端的工程,用feign来实现远程调用
     
 ### 项目启动
 
@@ -29,3 +30,8 @@
     2.启动服务提供方1.2.3
     3.启动消费端
     4.访问 localhost:80/consumer/dept/list
+    
+### 搭建feign (其实现是注解加接口,底层好像是web service,feign的底层继承了Ribbon)
+    1.在服务消费端和提供端添加feign的依赖
+    2.在消费端的接口打上 @FeignClient(value = "MICROSERVICECLOUD-DEPT") 注解
+    3.在每个抽象方法上打上 @RequestMapping(value = "/dept/list",method = RequestMethod.GET) 注解
