@@ -47,9 +47,17 @@
     2.实现create方法,把每个方法的异常备用类处理好
     3.当这些类调用的服务挂掉了,会自动调用在api模块新建类DeptClientServiceFallbackFactory的方法
     
-### HystrixDashboard 图形化监控服务
+### Hystrix Dashboard 图形化监控服务
     1.新建微服务
     2.添加依赖
     3.开启注解 @EnableHystrixDashboard 
     4.访问首页 localhost:9001/hystrix
     
+    测试:
+        1.启动 DeptConsumer_DashBoard_App
+        2.启动 DeptProvider8001_Hystrix_App
+        3.访问 http://localhost:8001/hystrix.stream 测试
+        这个时候页面返回的是一对数据,要想用图形界面展示还需要配置
+            1.在Hystrix Dashboard主界面的第一个窗口填入要监控的服务地址: http://localhost:8001/hystrix.stream
+            2.在Delay窗口填入2000(代表两秒刷新一次),Title随便写(写demo01也行)
+        当那个圆越大直线越高 说明访问压力越大
