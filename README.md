@@ -35,3 +35,6 @@
     1.在服务消费端和提供端添加feign的依赖
     2.在消费端的接口打上 @FeignClient(value = "MICROSERVICECLOUD-DEPT") 注解
     3.在每个抽象方法上打上 @RequestMapping(value = "/dept/list",method = RequestMethod.GET) 注解
+    
+### Hystrix (断路器)
+    
