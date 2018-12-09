@@ -37,4 +37,19 @@
     3.在每个抽象方法上打上 @RequestMapping(value = "/dept/list",method = RequestMethod.GET) 注解
     
 ### Hystrix (断路器)
+    服务熔断
+    1.服务提供方打开注解 @EnableCircuitBreaker
+    2.在每个方法上打上注解: @HystrixCommand(fallbackMethod = "processHystrix_Get") 
+        processHystrix_Get是一个出现异常时备用的方法
+
+    服务降级 (整体资源快不够了，忍痛将某些服务先关掉，待渡过难关，再开启回来。)
+    1.在api模块新建类DeptClientServiceFallbackFactory 实现 FallbackFactory
+    2.实现create方法,把每个方法的异常备用类处理好
+    3.当这些类调用的服务挂掉了,会自动调用在api模块新建类DeptClientServiceFallbackFactory的方法
+    
+### HystrixDashboard 图形化监控服务
+    1.新建微服务
+    2.添加依赖
+    3.开启注解 @EnableHystrixDashboard 
+    4.访问首页 localhost:9001/hystrix
     
