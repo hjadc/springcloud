@@ -1,0 +1,28 @@
+server:
+  port: 9527
+
+spring:
+  application:
+    name: microservicecloud-zuul-gateway
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka
+  instance:
+    instance-id: gateway-9527.com
+    prefer-ip-address: true
+
+zuul:
+  prefix: /huju                                # 设置统一前缀,这样不能什么接口,前面都必须加上 huju才能访问的到
+  # ignored-services: microservicecloud-dept   # 已经有了代理名称,就把真实的服务名称给关掉(禁止直接用这个访问)
+  ignored-services: "*"                        # 禁用多个可以用*
+  routes:
+    mydept.serviceId: microservicecloud-dept   # 服务的真实地址
+    mydept.path: /mydept/**                    # 服务的代理地址 配置后,用这个就代表是microservicecloud-dept
+
+info:
+  app.name: microservicecloud
+  company.name: www.baidu.com
+  build.artifactId: @project.artifactId@
+  build.version: @project.version@

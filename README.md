@@ -49,10 +49,14 @@
     
 ### Hystrix Dashboard 图形化监控服务
     1.新建微服务
-    2.添加依赖
+    2.添加依赖 (被监控的服务也需要引入该依赖)
     3.开启注解 @EnableHystrixDashboard 
     4.访问首页 localhost:9001/hystrix
     
+    注意:
+        1.被监控方也需要导入 spring-boot-starter-actuator
+        2.被监控方需要开启Hystrix功能 @EnableCircuitBreaker
+        3.因为需要开启了Hystrix功能,所以还需要导入 spring-cloud-starter-hystrix
     测试:
         1.启动 DeptConsumer_DashBoard_App
         2.启动 DeptProvider8001_Hystrix_App
@@ -61,3 +65,34 @@
             1.在Hystrix Dashboard主界面的第一个窗口填入要监控的服务地址: http://localhost:8001/hystrix.stream
             2.在Delay窗口填入2000(代表两秒刷新一次),Title随便写(写demo01也行)
         当那个圆越大直线越高 说明访问压力越大
+        
+### zuul 提供=代理+路由+过滤三大功能
+    1.新建一个zuul微服务模块
+    2.引入依赖
+    3.开启注解 @EnableZuulProxy
+    3.修改hosts文件 127.0.0.1  myzuul.com
+    
+    测试:
+        1.开启3个eureka集群
+        2.开启一个服务提供方
+        3.开启zuul服务
+        不用路由测试: http://localhost:8001/dept/get/1
+        用路由测试: http://myzuul.com:9527/microservicecloud-dept/dept/get/2
+        
+    配置服务的代理名称(在zuul的application.yml里配置):
+    zuul:
+      routes:
+        mydept.serviceId: microservicecloud-dept  # 服务的真实地址
+        mydept.path: /mydept/**                   # 服务的代理地址 配置后,用这个就代表是microservicecloud-dept
+    访问测试: http://myzuul.com:9527/mydept/dept/get/2
+    
+    问题:
+        这个时候真实名称http://myzuul.com:9527/microservicecloud-dept/dept/get/2和代理名称http://myzuul.com:9527/mydept/dept/get/2
+        都能访问,可以设置把真实名称的访问禁掉
+        zuul:
+          ignored-services: microservicecloud-dept    # 已经有了代理名称,就把真实的服务名称给关掉(禁止直接用这个访问)
+          # ignored-services: "*"                     # 禁用多个可以用*
+          routes:
+            mydept.serviceId: microservicecloud-dept  # 服务的真实地址
+            mydept.path: /mydept/**                   # 服务的代理地址 配置后,用这个就代表是microservicecloud-dept
+    设置统一访问前缀: prefix: /huju                    # 设置统一前缀,这样不能什么接口,前面都必须加上 huju才能访问的到
