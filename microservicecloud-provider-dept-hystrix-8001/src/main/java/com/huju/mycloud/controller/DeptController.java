@@ -4,8 +4,6 @@ import com.huju.mycloud.entities.Dept;
 import com.huju.mycloud.service.DeptService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +21,7 @@ public class DeptController {
     private DeptService service = null;
 
     @RequestMapping(value="/dept/get/{id}",method=RequestMethod.GET)
+    // 服务熔断机制,如果服务中出现异常,就调用备用方法
     @HystrixCommand(fallbackMethod = "processHystrix_Get")
     public Dept get(@PathVariable("id") Long id)
     {
