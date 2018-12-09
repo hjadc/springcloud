@@ -14,7 +14,10 @@
     6.microservice-provider-dept-8001   -- 这是服务提供方集群节点一
     7.microservice-provider-dept-8002   -- 这是服务提供方集群节点二
     8.microservice-provider-dept-8003   -- 这是服务提供方集群节点三
-    9.microservice-consumer-dept-feign  -- 这是面向客户端的工程,用feign来实现远程调用
+    9.microservice-consumer-dept-feign  -- 这是面向客户端的工程,用feign(注解加接口)负载均衡来实现远程调用
+    10.microservicecloud-provider-dept-hystrix-8001 -- 这是测试hystrix降级的服务提供端
+    11.microservicecloud-consumer-hystrix-dashboard -- 这是测试HystrixDashboard 图形化监控服务
+    12.microservicecloud-zuul-gateway-9527           -- 这是测试zuul的服务
     
 ### 项目启动
 
@@ -96,3 +99,4 @@
             mydept.serviceId: microservicecloud-dept  # 服务的真实地址
             mydept.path: /mydept/**                   # 服务的代理地址 配置后,用这个就代表是microservicecloud-dept
     设置统一访问前缀: prefix: /huju                    # 设置统一前缀,这样不能什么接口,前面都必须加上 huju才能访问的到
+    
